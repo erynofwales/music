@@ -12,7 +12,9 @@ with_fx :reverb, room: 0.85, damp: 0.8 do
                      [:c4, :major],
                      [:a3, :minor],
                      [:f3, :major],
-                     [:g3, :major]]
+                     [:g3, :major],
+                     [:ab3, :major],
+                     [:bb3, :major]]
       arpeggio = [0, 1, 2, 4]
       
       num_octaves = 4
@@ -24,19 +26,19 @@ with_fx :reverb, room: 0.85, damp: 0.8 do
         num_octaves.times do |oct|
           puts "octave: #{oct}"
           arpeggio.each do |note|
-            play scale_notes[note] + oct*12
+            play scale_notes[note] + oct * 12
             sleep duration
           end
         end
         
         # Top note of the arpeggio is the tonic.
-        play scale_notes[0] + num_octaves*12
+        play scale_notes[0] + num_octaves * 12
         sleep duration
         
-        (num_octaves-1).times do |oct|
+        (num_octaves - 1).times do |oct|
           puts "octave: #{oct}"
           arpeggio.reverse_each do |note|
-            play scale_notes[note] + (num_octaves-oct-1)*12
+            play scale_notes[note] + (num_octaves - oct - 1) * 12
             sleep duration
           end
         end
