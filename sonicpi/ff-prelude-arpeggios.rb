@@ -7,23 +7,23 @@ with_fx :reverb, room: 0.85, damp: 0.8 do
     live_loop :updown do
       use_synth :sine
       
-      progression = [[:c4, :major],
-                     [:a3, :minor],
-                     [:c4, :major],
-                     [:a3, :minor],
-                     [:f3, :major],
-                     [:g3, :major],
-                     [:ab3, :major],
-                     [:bb3, :major]]
+      progression = [[:c3, :major],
+                     [:a2, :minor],
+                     [:c3, :major],
+                     [:a2, :minor],
+                     [:f2, :major],
+                     [:g2, :major],
+                     [:ab2, :major],
+                     [:bb2, :major]]
       arpeggio = [0, 1, 2, 4]
       
-      num_octaves = 4
+      octaves = 4
       duration = 0.25
       
       progression.each do |chord|
         scale_notes = scale chord[0], chord[1] # encode this...
         
-        num_octaves.times do |oct|
+        octaves.times do |oct|
           puts "octave: #{oct}"
           arpeggio.each do |note|
             play scale_notes[note] + oct * 12
@@ -32,13 +32,13 @@ with_fx :reverb, room: 0.85, damp: 0.8 do
         end
         
         # Top note of the arpeggio is the tonic.
-        play scale_notes[0] + num_octaves * 12
+        play scale_notes[0] + octaves * 12
         sleep duration
         
-        (num_octaves - 1).times do |oct|
+        (octaves - 1).times do |oct|
           puts "octave: #{oct}"
           arpeggio.reverse_each do |note|
-            play scale_notes[note] + (num_octaves - oct - 1) * 12
+            play scale_notes[note] + (octaves - oct - 1) * 12
             sleep duration
           end
         end
