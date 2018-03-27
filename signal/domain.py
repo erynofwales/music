@@ -1,3 +1,8 @@
+# domain.py
+# Eryn Wells <eryn@erynwells.me>
+'''
+Some utilities for dealing with signal domains: time, frequency, etc.
+'''
 
 import numpy as np
 
@@ -8,7 +13,7 @@ class Time:
     __DefaultTime = 2.0
     __DefaultSteps = 200
 
-    def __init__(self, sec=Time.__DefaultTime, samples=Time.__DefaultSteps):
+    def __init__(self, sec=__DefaultTime, samples=__DefaultSteps):
         self.sec = sec
         self.samples = samples
         self._domain = None
@@ -28,3 +33,9 @@ class Time:
     def interval(self):
         '''Amount of time between samples, in seconds.'''
         return self.sec / self.samples
+
+    def __str__(self):
+        return repr(self)
+
+    def __repr__(self):
+        return '{}(sec={}, samples={})'.format(self.__class__.__name__, self.sec, self.samples)
