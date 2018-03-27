@@ -20,13 +20,17 @@ class Time:
 
     @property
     def domain(self):
-        if self._domain == None:
+        # TODO: This a really dumb hack around numpy arrays not supporting None testing. There must be a better way...
+        try:
+            self._domain.size
+        except AttributeError:
             self._domain = np.linspace(0, self.sec, num=self.samples + 1)
-        return self._domain
+        finally:
+            return self._domain
 
     @property
     def rate(self):
-        '''Number of samples per second.'''
+        '''Number of samples per second, in Hertz.'''
         return self.samples / self.sec
 
     @property
