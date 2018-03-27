@@ -8,9 +8,9 @@ import numpy as np
 
 __default_num_harmonics = 10
 
-def sine(domain, freq=1.0):
-    '''Render a sine wave in the given domain with the specified frequency.'''
-    return np.sin(2.0 * np.pi * freq * domain)
+def sine(domain, freq=1.0, phase=0):
+    '''Render a sine wave in the given time domain with the specified frequency and phase.'''
+    return np.sin(2.0 * np.pi * freq * domain + phase)
 
 def saw(domain, freq=1.0, num_harmonics=__default_num_harmonics):
     '''
